@@ -11,6 +11,7 @@
 # 5. Identity Operators
 # 6. Membership Operators
 # 7. Bitwise Operators
+# 8. Ternary Operators
 #
 # Operator Precedence determines which operation is performed
 # first when an expression contains multiple operators.
@@ -134,6 +135,17 @@ print("~a =", ~a)           # NOT  -> -6
 print("a << 1 =", a << 1)   # Left shift  -> 10
 print("a >> 1 =", a >> 1)   # Right shift -> 2
 
+# ==========================================================
+# 8. TERNARY OPERATORS
+# Used for concise conditional expressions.
+# ==========================================================
+
+# Syntax: [value_if_true] if [condition] else [value_if_false]
+
+age = 20
+result = "Adult" if age >= 18 else "Minor"
+
+print(result)      # Adult
 
 # ==========================================================
 # OPERATOR PRECEDENCE
