@@ -5,16 +5,22 @@ user_name = input("Enter your name: ")
 total_orders = int(input("Enter total number of orders: "))
 
 # Step 2 - Categorize user based on order history
-if total_orders >= 10:
-    category = "Gold"
-    coupon = "GOLD10"
-elif total_orders >= 5:
-    category = "Silver"
-    coupon = "SILVER5"
-else:
+if total_orders < 0:
+    category = "Invalid"
+    coupon = "No Coupon"
+elif total_orders == 0:
     category = "New User"
     coupon = "WELCOME10"
-
+elif total_orders <= 29:
+    category = "Silver"
+    coupon = "SILVER5"
+elif total_orders <= 59:
+    category = "Gold"
+    coupon = "GOLD10"
+else:
+    category = "Platinum"
+    coupon = "PLATINUM15"
+    
 # Step 3 - Send coupon based on category
 print("\nCoupon sent successfully!")
 
