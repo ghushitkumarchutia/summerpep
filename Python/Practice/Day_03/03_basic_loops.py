@@ -45,6 +45,7 @@ count = 0
 for count in range(len(str(number))):
     count += 1
 print(count)
+
 # Sum of digitd. eg: 1234 -> 10:
 number = int(input("Enter a number: "))
 sum = 0
