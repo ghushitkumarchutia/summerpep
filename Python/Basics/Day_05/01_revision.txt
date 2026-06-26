@@ -1,0 +1,180 @@
+Section: A
+1. What is Three-level nested loop?
+-> Basically a loop inside a loop inside a loop
+
+2. A three-level nested loop contains:
+-> A loop
+
+3. Which loop changes the fastest?
+-> Inner loop
+
+4. Which loop changes the slowest?
+-> Outer loop
+
+5. (True/False): The middle loop starts only afetr the outer loop starts
+-> True
+
+6. (True/False): The outter loop finishes before the inner loop
+-> False
+
+7. Complete the hierarchy:
+Country
+_______
+City
+-> State
+
+8. How many loops are required for:
+Company 
+Department
+Employee
+-> 3 loops
+
+9. 
+
+
+10. 3 real-life example of 3-level nested loop:
+-> Youtube: -> Channels -> Playlists -> Videos
+-> Facebook: -> Friends -> Posts -> Comments
+-> Amazon: -> Categories -> Sub-categories -> Products
+
+
+Section: B
+1.
+for i in range(2):
+    for j in range(2):
+        for k in range(2):
+            print(i,j,k)
+
+# Output:
+0 0 0
+0 0 1
+0 1 0
+0 1 1
+1 0 0
+1 0 1
+1 1 0
+1 1 1
+
+2. 
+for i in range(1, 3):
+    for j in range(1, 3):
+        for k in range(1, 3):
+            print(i+j+k, end="")
+
+# Output: 34454556
+
+3. 
+for i in range(2):
+    for j in range(2):
+        for k in range(2):
+            print("*", end="")
+        print()
+    print()
+
+# Output:
+**
+**
+
+**
+**
+
+4. 
+for i in range(2):
+    print("Layer",i)
+    for j in range(2):
+        print("Row",j)
+        for k in range(3):
+            print(k,end="")
+        print()
+
+# Output: 
+Layer 0
+Row 0
+012
+Row 1
+012
+Layer 1
+Row 0
+012
+Row 1
+012
+
+5. 
+count = 0
+
+for i in range(2):
+    for i in range(3):
+        for i in range(2):
+            count+=1
+
+print(count)
+
+#Output: 12
+
+6.
+for i in range(2):
+    for j in range(2):
+        for k in range(2):
+            if k == 1:
+                print(i,j,k)
+
+# Output:
+0 0 1
+0 1 1
+1 0 1
+1 1 1
+
+7. 
+for i in range(2):
+    for j in range(2):
+        for k in range(3):
+            if k == 1:
+                continue
+            print(i,j,k)
+
+# Output:
+0 0 0
+0 0 2
+0 1 0
+0 1 2
+1 0 0
+1 0 2
+1 1 0
+1 1 2
+
+8. 
+for i in range(3):
+    for j in range(2):
+        for k in range(4):
+            pass
+
+How many times does:
+A. Outer loop will execute? -> 3
+B. Middle loop will execute? -> 6
+C. Inner loop will execute -> 24
+
+9.
+for i in range(1,4):
+    for j in range(1,3):
+        for k in range(1,2):
+            print(i*j*k)
+
+# Output:
+1
+2
+2
+4
+3
+6
+
+10. Observe the code
+for building in range(2):
+    for floor in range(3):
+        for room in range(2):
+            print(building, floor, room)
+
+Without executing:
+1. Which variable changes fastest? -> room
+2. Which variable changes slowest? -> building
+3. How many times print will execute? -> 12
+4. Write the mathematical calculation: -> building * floor * room -> 2 * 3 * 2 = 12
