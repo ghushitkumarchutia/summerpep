@@ -1,0 +1,7 @@
+# Write all gitignore files, folders:
+.vscode/
+.env
+node_modules
+.DS_Store
+*.log
+*lpu.session.sql

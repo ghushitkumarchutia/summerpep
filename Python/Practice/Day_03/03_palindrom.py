@@ -1,4 +1,4 @@
-# Python code whter a number palindrom or not
+# Python code whether a number palindrome or not
 
 number = int(input("Enter a number: "))
 
