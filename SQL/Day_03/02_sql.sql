@@ -1,13 +1,17 @@
--- INSERT SAMPLE DATA INTO THE STUDENTS TABLE
-INSERT INTO students(student_name, gender, branch, semester, cgpa, age, city, email, phone_number, admission_date, fees, attendance)
-VALUES
-('Alex', 'Male', 'Computer Science', 6, 8.5, 20, 'New York', 'alex.smith@example.com', '9876543211', '2023-08-01', 50000.00, 85.00),
-('Sarah', 'Female', 'Information Technology', 6, 8.2, 21, 'Los Angeles', 'sarah.williams@example.com', '9876543212', '2023-08-01', 50000.00, 85.00),
-('James', 'Male', 'Mechanical Engineering', 6, 7.9, 19, 'Chicago', 'james.jones@example.com', '9876543213', '2023-08-01', 50000.00, 85.00),
-('Emily', 'Female', 'Civil Engineering', 6, 8.8, 22, 'Houston', 'emily.garcia@example.com', '9876543214', '2023-08-01', 50000.00, 85.00),
-('Robert', 'Male', 'Electrical Engineering', 6, 8.1, 20, 'Phoenix', 'robert.miller@example.com', '9876543215', '2023-08-01', 50000.00, 85.00),
-('Linda', 'Female', 'Computer Science', 6, 9.0, 21, 'Philadelphia', 'linda.rodriguez@example.com', '9876543216', '2023-08-01', 50000.00, 85.00),
-('William', 'Male', 'Business Administration', 6, 8.6, 19, 'San Antonio', 'william.martinez@example.com', '9876543217', '2023-08-01', 50000.00, 85.00),
-('Elizabeth', 'Female', 'Mechanical Engineering', 6, 7.5, 20, 'San Diego', 'elizabeth.hernandez@example.com', '9876543218', '2023-08-01', 50000.00, 85.00),
-('David', 'Male', 'Information Technology', 6, 8.3, 22, 'Dallas', 'david.lopez@example.com', '9876543219', '2023-08-01', 50000.00, 85.00),
-('Barbara', 'Female', 'Electrical Engineering', 6, 8.9, 21, 'San Jose', 'barbara.gonzalez@example.com', '9876543220', '2023-08-01', 50000.00, 85.00);
+-- UPDATE THE NEWLY ADDED COLUMNS FOR THE EXISTING 10 STUDENTS
+UPDATE students SET gender = 'Male', email = 'alex.smith@example.com', phone_number = '9876543211', fees = 50000.00, attendance = 85.00 WHERE student_name = 'Alex Michael Smith';
+UPDATE students SET gender = 'Female', email = 'sarah.williams@example.com', phone_number = '9876543212', fees = 50000.00, attendance = 85.00 WHERE student_name = 'Sarah Johnson Williams';
+UPDATE students SET gender = 'Male', email = 'james.jones@example.com', phone_number = '9876543213', fees = 50000.00, attendance = 85.00 WHERE student_name = 'James Brown Jones';
+UPDATE students SET gender = 'Female', email = 'emily.garcia@example.com', phone_number = '9876543214', fees = 50000.00, attendance = 85.00 WHERE student_name = 'Emily Davis Garcia';
+UPDATE students SET gender = 'Male', email = 'robert.miller@example.com', phone_number = '9876543215', fees = 50000.00, attendance = 85.00 WHERE student_name = 'Robert Wilson Miller';
+UPDATE students SET gender = 'Female', email = 'linda.rodriguez@example.com', phone_number = '9876543216', fees = 50000.00, attendance = 85.00 WHERE student_name = 'Linda Moore Rodriguez';
+UPDATE students SET gender = 'Male', email = 'william.martinez@example.com', phone_number = '9876543217', fees = 50000.00, attendance = 85.00 WHERE student_name = 'William Taylor Martinez';
+UPDATE students SET gender = 'Female', email = 'elizabeth.hernandez@example.com', phone_number = '9876543218', fees = 50000.00, attendance = 85.00 WHERE student_name = 'Elizabeth Anderson Hernandez';
+UPDATE students SET gender = 'Male', email = 'david.lopez@example.com', phone_number = '9876543219', fees = 50000.00, attendance = 85.00 WHERE student_name = 'David Thomas Lopez';
+UPDATE students SET gender = 'Female', email = 'barbara.gonzalez@example.com', phone_number = '9876543220', fees = 50000.00, attendance = 85.00 WHERE student_name = 'Barbara Jackson Gonzalez';
+
+-- NOW THAT ALL DATA IS POPULATED, ENFORCE NOT NULL CONSTRAINTS
+ALTER TABLE students 
+    ALTER COLUMN email SET NOT NULL,
+    ALTER COLUMN phone_number SET NOT NULL;
+
