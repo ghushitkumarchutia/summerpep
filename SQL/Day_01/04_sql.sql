@@ -1,13 +1,13 @@
 -- INSERT THE DATA INTO THE TABLE
-INSERT INTO lpu_students(first_name, middle_name, last_name, Reg_id, branch, batch, cgpa, age, city, is_placed)
+INSERT INTO students(student_name, age, branch, semester, cgpa, city, admission_date, is_placed)
 VALUES
-('Alex', 'Michael', 'Smith', 2023001, 'Computer Science', 2023, 8.5, 20, 'New York', TRUE),
-('Sarah', 'Johnson', 'Williams', 2023002, 'Information Technology', 2023, 8.2, 21, 'Los Angeles', TRUE),
-('James', 'Brown', 'Jones', 2023003, 'Mechanical Engineering', 2023, 7.9, 19, 'Chicago', FALSE),
-('Emily', 'Davis', 'Garcia', 2023004, 'Civil Engineering', 2023, 8.8, 22, 'Houston', TRUE),
-('Robert', 'Wilson', 'Miller', 2023005, 'Electrical Engineering', 2023, 8.1, 20, 'Phoenix', FALSE),
-('Linda', 'Moore', 'Rodriguez', 2023006, 'Computer Science', 2023, 9.0, 21, 'Philadelphia', TRUE),
-('William', 'Taylor', 'Martinez', 2023007, 'Business Administration', 2023, 8.6, 19, 'San Antonio', FALSE),
-('Elizabeth', 'Anderson', 'Hernandez', 2023008, 'Mechanical Engineering', 2023, 7.5, 20, 'San Diego', FALSE),
-('David', 'Thomas', 'Lopez', 2023009, 'Information Technology', 2023, 8.3, 22, 'Dallas', TRUE),
-('Barbara', 'Jackson', 'Gonzalez', 2023010, 'Electrical Engineering', 2023, 8.9, 21, 'San Jose', TRUE);
+('Alex Michael Smith', 20, 'Computer Science', 6, 8.5, 'New York', '2023-08-01', TRUE),
+('Sarah Johnson Williams', 21, 'Information Technology', 6, 8.2, 'Los Angeles', '2023-08-01', TRUE),
+('James Brown Jones', 19, 'Mechanical Engineering', 6, 7.9, 'Chicago', '2023-08-01', FALSE),
+('Emily Davis Garcia', 22, 'Civil Engineering', 6, 8.8, 'Houston', '2023-08-01', TRUE),
+('Robert Wilson Miller', 20, 'Electrical Engineering', 6, 8.1, 'Phoenix', '2023-08-01', FALSE),
+('Linda Moore Rodriguez', 21, 'Computer Science', 6, 9.0, 'Philadelphia', '2023-08-01', TRUE),
+('William Taylor Martinez', 19, 'Business Administration', 6, 8.6, 'San Antonio', '2023-08-01', FALSE),
+('Elizabeth Anderson Hernandez', 20, 'Mechanical Engineering', 6, 7.5, 'San Diego', '2023-08-01', FALSE),
+('David Thomas Lopez', 22, 'Information Technology', 6, 8.3, 'Dallas', '2023-08-01', TRUE),
+('Barbara Jackson Gonzalez', 21, 'Electrical Engineering', 6, 8.9, 'San Jose', '2023-08-01', TRUE);

@@ -1,10 +1,14 @@
-SELECT * FROM lpu_students WHERE city != 'Houston';
+-- SELECT STUDENTS WHO ARE NOT FROM HOUSTON
+SELECT * FROM students WHERE city != 'Houston';
 
-SELECT * FROM lpu_students WHERE branch != 'Information Technology';
+-- SELECT STUDENTS WHO ARE NOT IN THE INFORMATION TECHNOLOGY BRANCH
+SELECT * FROM students WHERE branch != 'Information Technology';
 
-SELECT * FROM lpu_students WHERE cgpa < 8.0;
+-- SELECT STUDENTS WITH CGPA LESS THAN 8.0
+SELECT * FROM students WHERE cgpa < 8.0;
 
-SELECT * FROM lpu_students WHERE city != 'Houston' and city != 'San Jose';
+-- SELECT STUDENTS WHO ARE NEITHER FROM HOUSTON NOR FROM SAN JOSE
+SELECT * FROM students WHERE city != 'Houston' AND city != 'San Jose';
 
-SELECT * FROM lpu_students WHERE branch != 'Computer Science' and branch != 'Business Administration';
-
+-- SELECT STUDENTS WHO ARE NEITHER FROM COMPUTER SCIENCE NOR FROM BUSINESS ADMINISTRATION
+SELECT * FROM students WHERE branch != 'Computer Science' AND branch != 'Business Administration';

@@ -1,47 +1,51 @@
--- ADVANCED FILTERING
-SELECT student_id, first_name FROM lpu_students WHERE age is NULL;
+-- ADVANCED FILTERING: SELECT STUDENTS WHERE AGE IS NULL
+SELECT student_id, student_name FROM students WHERE age IS NULL;
 
 -- NOTE: Using '=' with NULL (age = NULL) will NOT return any rows.
 -- In SQL, you must always use 'IS NULL' to find NULL values.
-SELECT student_id, first_name FROM lpu_students WHERE age = NULL;
+SELECT student_id, student_name FROM students WHERE age = NULL;
 
-SELECT * FROM lpu_students WHERE age BETWEEN 18 AND 21;
+-- SELECT STUDENTS BETWEEN AGE 18 AND 21
+SELECT * FROM students WHERE age BETWEEN 18 AND 21;
 
-SELECT * FROM lpu_students WHERE city IN ('Houston', 'Los Angeles', 'Chicago');
+-- SELECT STUDENTS FROM SPECIFIC CITIES (HOUSTON, LOS ANGELES, CHICAGO)
+SELECT * FROM students WHERE city IN ('Houston', 'Los Angeles', 'Chicago');
 
-SELECT * FROM lpu_students WHERE branch IN ('Electrical Engineering', 'Mechanical Engineering');
+-- SELECT STUDENTS IN SPECIFIC BRANCHES (ELECTRICAL OR MECHANICAL ENGINEERING)
+SELECT * FROM students WHERE branch IN ('Electrical Engineering', 'Mechanical Engineering');
 
-SELECT * FROM lpu_students WHERE Reg_id IN (2023001, 2023004, 2023009);
+-- SELECT STUDENTS WITH SPECIFIC IDs (REPLACED REG_ID WITH STUDENT_ID)
+SELECT * FROM students WHERE student_id IN (1, 4, 9);
 
--- NAME STARTS WITH R
-SELECT * FROM lpu_students WHERE first_name LIKE 'R%';
+-- SELECT STUDENTS WHOSE NAME STARTS WITH 'R'
+SELECT * FROM students WHERE student_name LIKE 'R%';
 
--- NAME ENDS WITH n
-SELECT * FROM lpu_students WHERE first_name LIKE '%n';
+-- SELECT STUDENTS WHOSE NAME ENDS WITH 'n'
+SELECT * FROM students WHERE student_name LIKE '%n';
 
--- NAME HAS "ra" IN IT
-SELECT * FROM lpu_students WHERE first_name LIKE '%ra%';
+-- SELECT STUDENTS WHOSE NAME CONTAINS 'ra'
+SELECT * FROM students WHERE student_name LIKE '%ra%';
 
--- CITY START WITH D
-SELECT * FROM lpu_students WHERE city LIKE 'D%';
+-- SELECT STUDENTS WHERE CITY STARTS WITH 'D'
+SELECT * FROM students WHERE city LIKE 'D%';
 
--- BRANCH ENDS WITH e
-SELECT * FROM lpu_students WHERE branch LIKE '%e';
+-- SELECT STUDENTS WHERE BRANCH ENDS WITH 'e'
+SELECT * FROM students WHERE branch LIKE '%e';
 
--- NAMES WHO CONTAINS EXACTLY 4 CHARACTERS
-SELECT * FROM lpu_students WHERE first_name LIKE '____';
+-- SELECT STUDENTS WHOSE FULL NAME IS EXACTLY 4 CHARACTERS
+SELECT * FROM students WHERE student_name LIKE '____';
 
--- SORT BY NAME
-SELECT * FROM lpu_students ORDER BY first_name;
+-- SORT STUDENTS BY NAME IN ASCENDING ORDER
+SELECT * FROM students ORDER BY student_name;
 
--- SORT BY CITY
-SELECT * FROM lpu_students ORDER BY city;
+-- SORT STUDENTS BY CITY IN ASCENDING ORDER
+SELECT * FROM students ORDER BY city;
 
--- SORT BY CGPA FROM HEIGHTEST TO LOWEST
-SELECT * FROM lpu_students ORDER BY cgpa DESC;
+-- SORT STUDENTS BY CGPA FROM HIGHEST TO LOWEST (DESCENDING)
+SELECT * FROM students ORDER BY cgpa DESC;
 
--- SORT BY BRANCH THEN NAME
-SELECT * FROM lpu_students ORDER BY branch, first_name;
+-- SORT STUDENTS BY branch THEN BY student_name
+SELECT * FROM students ORDER BY branch, student_name;
 
--- SORT BY AGE FROM YOUNGEST TO OLDEST
-SELECT * FROM lpu_students ORDER BY age ASC;
+-- SORT STUDENTS BY AGE FROM YOUNGEST TO OLDEST (ASCENDING)
+SELECT * FROM students ORDER BY age ASC;

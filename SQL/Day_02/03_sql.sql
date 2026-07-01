@@ -1,13 +1,20 @@
-SELECT * FROM lpu_students WHERE branch = 'Computer Science';
+-- SELECT STUDENTS IN THE COMPUTER SCIENCE BRANCH
+SELECT * FROM students WHERE branch = 'Computer Science';
 
-SELECT * FROM lpu_students WHERE age BETWEEN 19 AND 21;
+-- SELECT STUDENTS BETWEEN AGE 19 AND 21
+SELECT * FROM students WHERE age BETWEEN 19 AND 21;
 
-SELECT * FROM lpu_students WHERE branch = 'Computer Science' OR branch = 'Information Technology';
+-- SELECT STUDENTS IN EITHER COMPUTER SCIENCE OR INFORMATION TECHNOLOGY BRANCH
+SELECT * FROM students WHERE branch = 'Computer Science' OR branch = 'Information Technology';
 
-SELECT * FROM lpu_students WHERE first_name LIKE 'S%';
+-- SELECT STUDENTS WHOSE NAME STARTS WITH 'S'
+SELECT * FROM students WHERE student_name LIKE 'S%';
 
-SELECT DISTINCT branch FROM lpu_students;
+-- SELECT ALL UNIQUE BRANCHES
+SELECT DISTINCT branch FROM students;
 
-SELECT first_name, cgpa FROM lpu_students;
+-- SELECT ONLY student_name AND cgpa COLUMNS FOR ALL STUDENTS
+SELECT student_name, cgpa FROM students;
 
-SELECT * FROM lpu_students ORDER BY cgpa DESC;
+-- SELECT ALL STUDENTS SORTED BY CGPA IN DESCENDING ORDER
+SELECT * FROM students ORDER BY cgpa DESC;
