@@ -4,9 +4,15 @@ import { EVENTS } from "../config/constants.js";
 import { handleJoinRoom, handleLeaveRoom } from "./handlers/room.handler.js";
 import {
   handleSendMessage,
+  handleEditMessage,
+  handleDeleteMessage,
   handleTypingStart,
   handleTypingStop,
 } from "./handlers/message.handler.js";
+import {
+  handleAddReaction,
+  handleRemoveReaction,
+} from "./handlers/reaction.handler.js";
 import { handleDisconnect } from "./handlers/disconnect.handler.js";
 
 export const initializeSocket = (httpServer) => {
@@ -34,6 +40,22 @@ export const initializeSocket = (httpServer) => {
 
     socket.on(EVENTS.SEND_MESSAGE, (payload) => {
       handleSendMessage(io, socket, payload);
+    });
+
+    socket.on(EVENTS.EDIT_MESSAGE, (payload) => {
+      handleEditMessage(io, socket, payload);
+    });
+
+    socket.on(EVENTS.DELETE_MESSAGE, (payload) => {
+      handleDeleteMessage(io, socket, payload);
+    });
+
+    socket.on(EVENTS.ADD_REACTION, (payload) => {
+      handleAddReaction(io, socket, payload);
+    });
+
+    socket.on(EVENTS.REMOVE_REACTION, (payload) => {
+      handleRemoveReaction(io, socket, payload);
     });
 
     socket.on(EVENTS.TYPING_START, () => {

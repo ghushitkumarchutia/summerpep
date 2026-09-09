@@ -86,8 +86,32 @@ class ChatService {
     };
   }
 
-  addMessage(roomName, sender, content, type = "user") {
+  formatReactions(reactionsMap = {}) {
+    const formatted = {};
+    for (const [emoji, users] of Object.entries(reactionsMap)) {
+      formatted[emoji] = {
+        count: users.length,
+        users: [...users],
+      };
+    }
+    return formatted;
+  }
+
+  addMessage(roomName, sender, content, type = "user", replyToId = null) {
     const room = this.getOrCreateRoom(roomName);
+
+    let replyData = null;
+    if (replyToId) {
+      const parent = room.messages.find((m) => m.id === replyToId);
+      if (parent && parent.type !== "system") {
+        replyData = {
+          id: parent.id,
+          sender: parent.sender.username,
+          snippet: parent.content.slice(0, 100),
+        };
+      }
+    }
+
     const message = {
       id: randomUUID(),
       room: roomName,
@@ -97,6 +121,12 @@ class ChatService {
       },
       content,
       type,
+      replyTo: replyData,
+      reactions: {},
+      isEdited: false,
+      editedAt: null,
+      isDeleted: false,
+      deletedAt: null,
       timestamp: new Date().toISOString(),
     };
 
@@ -107,6 +137,146 @@ class ChatService {
     }
 
     return message;
+  }
+
+  getMessageById(roomName, messageId) {
+    const room = this.rooms.get(roomName);
+    if (!room) return null;
+    return room.messages.find((m) => m.id === messageId) || null;
+  }
+
+  addReaction(roomName, messageId, emoji, username) {
+    const message = this.getMessageById(roomName, messageId);
+    if (!message || message.isDeleted) {
+      return { success: false, error: "Message not found or deleted" };
+    }
+
+    if (!message.reactions) {
+      message.reactions = {};
+    }
+
+    const reactionKeys = Object.keys(message.reactions);
+    if (
+      reactionKeys.length >= LIMITS.MAX_REACTIONS_PER_MESSAGE &&
+      !message.reactions[emoji]
+    ) {
+      return {
+        success: false,
+        error: "Maximum unique reactions reached for this message",
+      };
+    }
+
+    if (!message.reactions[emoji]) {
+      message.reactions[emoji] = [];
+    }
+
+    if (message.reactions[emoji].includes(username)) {
+      return { success: false, error: "User already reacted with this emoji" };
+    }
+
+    message.reactions[emoji].push(username);
+
+    return {
+      success: true,
+      messageId,
+      reactions: this.formatReactions(message.reactions),
+    };
+  }
+
+  removeReaction(roomName, messageId, emoji, username) {
+    const message = this.getMessageById(roomName, messageId);
+    if (!message || !message.reactions || !message.reactions[emoji]) {
+      return { success: false, error: "Reaction not found" };
+    }
+
+    const index = message.reactions[emoji].indexOf(username);
+    if (index === -1) {
+      return { success: false, error: "User has not reacted with this emoji" };
+    }
+
+    message.reactions[emoji].splice(index, 1);
+    if (message.reactions[emoji].length === 0) {
+      delete message.reactions[emoji];
+    }
+
+    return {
+      success: true,
+      messageId,
+      reactions: this.formatReactions(message.reactions),
+    };
+  }
+
+  editMessage(roomName, messageId, socketId, newContent) {
+    const message = this.getMessageById(roomName, messageId);
+    if (!message) {
+      return { success: false, error: "Message not found" };
+    }
+
+    if (message.type === "system" || message.isDeleted) {
+      return { success: false, error: "Cannot edit this message" };
+    }
+
+    if (message.sender.id !== socketId) {
+      return {
+        success: false,
+        error: "Unauthorized: only message author can edit",
+      };
+    }
+
+    message.content = newContent;
+    message.isEdited = true;
+    message.editedAt = new Date().toISOString();
+
+    return {
+      success: true,
+      message,
+    };
+  }
+
+  deleteMessage(roomName, messageId, socketId) {
+    const message = this.getMessageById(roomName, messageId);
+    if (!message) {
+      return { success: false, error: "Message not found" };
+    }
+
+    if (message.type === "system") {
+      return { success: false, error: "Cannot delete system messages" };
+    }
+
+    if (message.sender.id !== socketId) {
+      return {
+        success: false,
+        error: "Unauthorized: only message author can delete",
+      };
+    }
+
+    message.isDeleted = true;
+    message.content = "This message was deleted";
+    message.deletedAt = new Date().toISOString();
+    message.reactions = {};
+
+    return {
+      success: true,
+      messageId,
+      deletedAt: message.deletedAt,
+    };
+  }
+
+  getMessageThread(roomName, messageId) {
+    const room = this.rooms.get(roomName);
+    if (!room) return null;
+
+    const parent = room.messages.find((m) => m.id === messageId);
+    if (!parent) return null;
+
+    const replies = room.messages.filter(
+      (m) => m.replyTo && m.replyTo.id === messageId,
+    );
+
+    return {
+      parent,
+      replies,
+    };
   }
 
   getUser(socketId) {

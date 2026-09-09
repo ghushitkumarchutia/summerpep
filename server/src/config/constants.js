@@ -11,6 +11,13 @@ export const EVENTS = Object.freeze({
   TYPING_START: "typing_start",
   TYPING_STOP: "typing_stop",
   USER_TYPING: "user_typing",
+  ADD_REACTION: "add_reaction",
+  REMOVE_REACTION: "remove_reaction",
+  REACTION_UPDATED: "reaction_updated",
+  EDIT_MESSAGE: "edit_message",
+  MESSAGE_EDITED: "message_edited",
+  DELETE_MESSAGE: "delete_message",
+  MESSAGE_DELETED: "message_deleted",
   ERROR: "error",
 });
 
@@ -22,6 +29,8 @@ export const LIMITS = Object.freeze({
   DEFAULT_MAX_MESSAGE_LENGTH: 2000,
   DEFAULT_MAX_ROOM_HISTORY: 100,
   DEFAULT_ROOM: "general",
+  MAX_EMOJI_LENGTH: 8,
+  MAX_REACTIONS_PER_MESSAGE: 20,
 });
 
 export const SYSTEM_USER = Object.freeze({
